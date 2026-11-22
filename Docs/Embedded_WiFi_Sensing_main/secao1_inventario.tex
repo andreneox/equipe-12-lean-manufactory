@@ -1,0 +1,54 @@
+\section{Organização e verificação das gravações (seção 1)}
+
+\subsection{Procedimento}
+
+O programa percorre Datasets/Activity/\{FA, GU, LD, SD, WA\}/s*/ e lê todos os arquivos csi\_data\_*.txt (a pasta Breathing(experimental), os modelos e os arquivos NPY não são considerados). Cada TXT é lido linha a linha: \textbf{total\_registros} conta as linhas não vazias, e \textbf{registros\_formato\_valido} conta as linhas com exatamente 129 valores numéricos finitos separados por vírgula (1 valor temporal + 64 pares imaginária/real). Linhas com outra quantidade de valores, valores não numéricos ou não finitos são descritas na coluna \textbf{problemas\_leitura} com o número da linha e o motivo. O resultado está em \textbf{inventario\_gravacoes.csv} (uma linha por TXT).
+
+\subsection{Resultados}
+
+Foram encontrados \textbf{1647 arquivos TXT}, com 1.623.376 registros (linhas não vazias) no total, todos com formato válido: nenhum arquivo apresentou linha vazia intermediária, falha de leitura ou linha fora do formato de 129 valores. A quantidade de registros por gravação varia de 866 a 1001 (mediana 988), o que é compatível com a coleta descrita no artigo (cerca de 50 pacotes por segundo durante 20 s por repetição). Essa variação não caracteriza erro.
+
+{\footnotesize
+\begin{longtable}{|>{\centering\arraybackslash}p{2.49cm}|>{\centering\arraybackslash}p{1.73cm}|>{\centering\arraybackslash}p{1.73cm}|>{\centering\arraybackslash}p{1.73cm}|>{\centering\arraybackslash}p{1.73cm}|>{\centering\arraybackslash}p{1.73cm}|>{\centering\arraybackslash}p{1.73cm}|}
+\caption{Quantidade de arquivos TXT (gravações) por participante e atividade. Cada célula conta arquivos, não registros dentro de um TXT. Fonte: contagem\_gravacoes.csv.}\\
+\hline
+\textbf{Participante} & \textbf{FA} & \textbf{GU} & \textbf{LD} & \textbf{SD} & \textbf{WA} & \textbf{Total} \\ \hline
+\endfirsthead
+\hline
+\textbf{Participante} & \textbf{FA} & \textbf{GU} & \textbf{LD} & \textbf{SD} & \textbf{WA} & \textbf{Total} \\ \hline
+\endhead
+s1 & 14 & 15 & 15 & 15 & 15 & 74 \\ \hline
+s2 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s3 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s4 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s5 & 15 & 14 & 15 & 15 & 15 & 74 \\ \hline
+s6 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s7 & 14 & 15 & 15 & 15 & 15 & 74 \\ \hline
+s8 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s9 & 15 & 15 & 15 & 15 & 16 & 76 \\ \hline
+s10 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s11 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s12 & 15 & 14 & 14 & 16 & 15 & 74 \\ \hline
+s13 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s14 & 15 & 15 & 15 & 16 & 14 & 75 \\ \hline
+s15 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s16 & 14 & 15 & 15 & 15 & 15 & 74 \\ \hline
+s17 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s19 & 15 & 16 & 16 & 15 & 15 & 77 \\ \hline
+s21 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s22 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s23 & 15 & 15 & 15 & 15 & 15 & 75 \\ \hline
+s24 & 15 & 15 & 14 & 15 & 15 & 74 \\ \hline
+\textbf{Total} & \textbf{327} & \textbf{329} & \textbf{329} & \textbf{332} & \textbf{330} & \textbf{1647} \\ \hline
+\end{longtable}
+}
+
+\subsection{Comparação com o artigo}
+
+O artigo informa 22 voluntários, cada um realizando 15 repetições de cinco atividades, e um total de 1.647 amostras coletadas. A contagem obtida coincide com esses números: \textbf{1.647 gravações} e \textbf{22 participantes}. Observações sobre a diferença entre o desenho do experimento e a base:
+
+\begin{itemize}
+    \item 22 × 5 × 15 = 1.650 gravações seriam esperadas. A base tem 8 combinações participante/atividade com 14 arquivos (s1/FA, s5/GU, s7/FA, s12/GU, s12/LD, s14/WA, s16/FA, s24/LD) e 5 com 16 arquivos (s9/WA, s12/SD, s14/SD, s19/GU, s19/LD); 1.650 - 8 + 5 = 1.647.
+    \item Existem 22 pastas de participantes em cada atividade, e as 22 possuem gravações nas cinco atividades (não há pasta vazia). A numeração, porém, não é contínua: os identificadores \textbf{s18 e s20 não existem} na base, de modo que os participantes vão de s1 a s24 com duas lacunas. Vale notar que o script dos autores Scripts/imf\_generator.py lista s18 entre os participantes, embora essa pasta não exista.
+    \item Nenhuma gravação foi excluída por erro de formato, portanto a base analisada corresponde integralmente à informada no artigo.
+\end{itemize}

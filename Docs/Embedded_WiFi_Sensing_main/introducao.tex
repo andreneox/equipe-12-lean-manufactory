@@ -1,0 +1,7 @@
+\section{Objetivo}
+
+Este trabalho analisa as amplitudes de \textit{Channel State Information} (CSI) de cinco atividades humanas - FA (queda), GU (levantar-se), LD (deitar-se), SD (sentar-se) e WA (caminhar) - da base disponibilizada com o artigo \textit{Tools and Methods for Achieving Wi-Fi Sensing in Embedded Devices} (Armenta-Garcia et al., Sensors 2025). Os objetivos são: (i) inventariar e verificar as gravações; (ii) selecionar 30 gravações dos participantes atribuídos à equipe; (iii) calcular e visualizar as amplitudes de CSI; (iv) resumir a amplitude do par 20 por cinco características estatísticas; e (v) gerar sinais sintéticos por EEMD, recombinando componentes de duas gravações reais, e compará-los com os sinais de origem.
+
+\subsection{Materiais e reprodução}
+
+Todo o processamento foi feito pelo programa \textbf{analise\_csi.py}, que executa as seções 1 a 5 em sequência e gera os CSV, as figuras e o arquivo de sinais sintéticos. O caminho da base e o ID da equipe são configurados no topo do arquivo; as instruções completas estão no LEIA-ME.txt. Ambiente utilizado: Python 3.10.11, numpy 1.26.4, pandas 2.2.2, matplotlib 3.10.9 e EMD-signal (PyEMD) 1.10.0. Os cálculos foram validados com os exemplos do enunciado: para Datasets/Activity/FA/s1/csi\_data\_1720464506.txt o código reproduz a amplitude 16,28 do par 20 no registro 1 e a média 21,5859, o desvio padrão 4,4086 e o pico a pico 29,0998 da série do par 20; para a série [2, 5, 3, 8] obtém pico a pico 6 e média das diferenças absolutas 3,33.

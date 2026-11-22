@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{textcomp}
+\usepackage[hidelinks]{hyperref}
+
+% Fonte Arial (Helvetica/Nimbus Sans, equivalente metrico da Arial) e texto todo preto
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\captionsetup{font=small,labelfont=bf,labelsep=endash}
+\captionsetup[table]{position=top}
+
+\geometry{top=3cm, bottom=2cm, left=3cm, right=2cm}
+
+\onehalfspacing
+\setlength{\emergencystretch}{3em}   % evita linhas estouradas com nomes de arquivos longos
+% permite quebrar linha depois de "_" (nomes de arquivos longos)
+\DeclareRobustCommand{\_}{\textunderscore\allowbreak}
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{6pt}
+
+\begin{document}
+
+
+\input{capa}
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\input{introducao}
+\input{secao1_inventario}
+\input{secao2_selecao}
+\input{secao3_amplitudes}
+\input{secao4_caracteristicas}
+\input{secao5_eemd}
+\input{conclusao}
+\input{referencias}
+\input{anexo}
+
+\end{document}
